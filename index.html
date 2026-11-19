@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee — Artisanal Coffee Roastery &amp; Bar</title>
+
+  <link rel="icon" type="image/png" href="./favicon-coffee/favicon-96x96.png?v=2" sizes="96x96">
+  <link rel="shortcut icon" href="./favicon-coffee/favicon.ico?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="./favicon-coffee/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Coffee">
+  <link rel="manifest" href="./favicon-coffee/site.webmanifest">
+
+  <!-- Google Fonts: Anton, Plus Jakarta Sans, Playfair Display, Space Mono, Barlow Condensed -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@700;800;900&family=Playfair+Display:ital,wght@0,500;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <!-- CSS Modularizado (Tokens -> Base -> Componentes -> Efeitos) -->
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/effects.css">
+
+  <!-- GSAP 3.13.0 (Core, ScrollTrigger, SplitText) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
+
+  <!-- Aplicação Modular (ES Modules) -->
+  <script type="module" src="./js/main.js"></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Pular para o conteúdo principal</a>
+
+  <!-- FX6: Camada Global Discreta de Grão + Vinheta -->
+  <div aria-hidden="true" class="fx-film-grain"></div>
+  <div aria-hidden="true" class="fx-vignette"></div>
+
+  <!-- FX11: Cursor Customizado Contextual (Desktop) -->
+  <div aria-hidden="true" class="fx-cursor" id="custom-cursor">
+    <span class="fx-cursor__label" id="custom-cursor-label"></span>
+  </div>
+
+  <!-- =================================================================== -->
+  <!-- 0. PRELOADER (FX1)                                                  -->
+  <!-- =================================================================== -->
+  <div aria-hidden="true" class="preloader" id="preloader">
+    <div class="preloader__top">
+      <span>COFFEE LAB</span>
+      <span class="preloader__status">
+        <span class="preloader__pulse"></span>
+        CALIBRATING PROFILE
+      </span>
+    </div>
+
+    <div class="preloader__center">
+      <div class="preloader__icon-wrap">
+        <svg class="preloader__cup-svg" fill="none" viewBox="0 0 48 48">
+          <path d="M8 12h24v16a12 12 0 01-12 12H20A12 12 0 018 28V12z" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="2.5"></path>
+          <path d="M32 16h5a5 5 0 015 5v2a5 5 0 01-5 5h-5" stroke-linecap="round" stroke-width="2.5"></path>
+          <line stroke-linecap="round" stroke-width="2.5" x1="6" x2="34" y1="44" y2="44"></line>
+          <path class="preloader__cup-liquid" d="M10 24h20v4a10 10 0 01-10 10A10 10 0 0110 28v-4z"
+            id="preloader-cup-liquid"></path>
+        </svg>
+      </div>
+      <div class="preloader__readout">
+        <div class="preloader__counter" id="preloader-counter">0%</div>
+        <p class="preloader__caption">Paciência, pressão e grãos de altitude.</p>
+      </div>
+      <div class="preloader__track">
+        <div class="preloader__bar" id="preloader-bar"></div>
+      </div>
+    </div>
+
+    <div class="preloader__bottom">
+      <span>EDITION: HARVEST 2025</span>
+      <span>SÃO PAULO / MINAS GERAIS</span>
+    </div>
+  </div>
+
+  <!-- =================================================================== -->
+  <!-- 1. HEADER & BARRA DE ANÚNCIO                                        -->
+  <!-- =================================================================== -->
+  <header class="site-header" data-purpose="site-navigation">
+    <div class="container-xl site-header__inner">
+      <nav aria-label="Navegação Principal" class="site-nav">
+        <a class="site-nav__link" data-fx="letter-flip" href="#drinks">Drinks</a>
+        <a class="site-nav__link" data-fx="letter-flip" href="#story">Our Story</a>
+        <a class="site-nav__link" data-fx="letter-flip" href="#process">Process</a>
+        <a class="site-nav__link" data-fx="letter-flip" href="#space">Find Us</a>
+      </nav>
+
+      <div class="site-logo">
+        <a aria-label="Coffee Home" class="site-logo__link" href="#">
+          <span class="site-logo__wordmark">COFFEE</span>
+        </a>
+      </div>
+
+      <div class="site-header__actions">
+        <a class="btn-header-cta" data-fx="letter-flip" href="#order">
+          <span class="btn-header-cta__text">ORDER YOURS NOW</span>
+          <span aria-hidden="true" class="btn-header-cta__sep">|</span>
+          <svg aria-hidden="true" class="btn-header-cta__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="announcement-strip" data-purpose="hero-announcement-strip">
+    <div class="container-xl announcement-strip__inner">
+      <p class="announcement-strip__tagline">Made for the ones who taste the difference</p>
+      <div class="announcement-strip__offer">
+        <span>This one’s on us — almost</span>
+        <span aria-hidden="true" class="announcement-strip__star">✦</span>
+        <strong class="announcement-strip__highlight">15% off today</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- =================================================================== -->
+  <!-- CONTEÚDO PRINCIPAL                                                  -->
+  <!-- =================================================================== -->
+  <main id="main-content">
+    <!-- 2. HERO INTERACTIVE STAGE (FX4, FX3, FX5) -->
+    <section aria-label="Destaque Principal" class="hero-stage" data-purpose="hero-stage" id="hero">
+      <div class="container-xl hero-stage__inner">
+        <!-- FX5: Canvas de Vapor Suave -->
+        <canvas aria-hidden="true" class="hero-steam-canvas" id="steam-canvas"></canvas>
+
+        <!-- Marca d'Água Cinética de Fundo -->
+        <div aria-hidden="true" class="hero-watermark-wrap" id="watermark-container">
+          <div class="hero-watermark">
+            <div>CARAMEL MACCHIATO</div>
+            <div>CARAMEL MACCHIATO</div>
+            <div>CARAMEL MACCHIATO</div>
+          </div>
+        </div>
+
+        <!-- Objeto Principal Central ancorado na base (FX4 Parallax) -->
+        <div class="hero-beverage" id="hero-beverage-wrapper">
+          <div class="hero-beverage__frame" data-cursor="Explorar">
+            <div aria-hidden="true" class="hero-beverage__glow"></div>
+            <img
+              alt="Macchiato de Caramelo servido em copo de vidro com camadas de leite vaporizado, espresso e calda dourada de caramelo"
+              class="hero-beverage__img" decoding="async" fetchpriority="high" height="620" id="hero-coffee-cup"
+              loading="eager" src="./assets/hero-macchiato.png" width="520">
+          </div>
+        </div>
+
+        <!-- Bloco Editorial Esquerdo -->
+        <div class="hero-copy" data-purpose="hero-copy-controls">
+          <div class="hero-copy__badge">
+            <span>Macchiato de Caramelo</span>
+          </div>
+          <p class="hero-copy__desc">
+            Camadas delicadas de baunilha de Madagascar, leite vaporizado aveludado, espresso encorpado marcado na
+            xícara e calda dourada artesanal de caramelo puro fundido na hora.
+          </p>
+          <div class="hero-copy__actions">
+            <a class="btn-caramel" data-fx="letter-flip" href="#drinks">Drinks</a>
+            <a class="btn-sand" data-fx="letter-flip" href="#story">Our Story</a>
+          </div>
+        </div>
+
+        <!-- Bloco de Métricas Técnicas Direito -->
+        <div class="hero-metrics" data-purpose="hero-technical-metrics">
+          <div class="hero-metric">
+            <div class="hero-metric__value">1</div>
+            <div class="hero-metric__label">ROAST LOCATION</div>
+          </div>
+          <div class="hero-metric">
+            <div class="hero-metric__value hero-metric__value--rating">
+              <span>4.8</span>
+              <span aria-hidden="true" class="hero-metric__star">★</span>
+            </div>
+            <div class="hero-metric__label">RATINGS</div>
+          </div>
+          <div class="hero-metric">
+            <div class="hero-metric__value">340+</div>
+            <div class="hero-metric__label">FARM DIRECT BATCHES</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 3. MANIFESTO / SOBRE (FX2 + FX12 — Scrub #1)                        -->
+    <!-- =================================================================== -->
+    <section class="section-manifesto" data-fx="bg-transition" id="story">
+      <div class="container-md">
+        <div class="eyebrow eyebrow--caramel">
+          <span aria-hidden="true" class="eyebrow__line"></span>
+          <span>01 / O Manifesto Artesanal</span>
+        </div>
+
+        <div class="manifesto-content" id="manifesto-text-wrapper">
+          <h2 class="manifesto-quote" data-fx="reveal-manifesto">
+            Não acreditamos em café com pressa. Acreditamos no calor que
+            <span class="manifesto-word manifesto-word--white">acorda a alma</span>,
+            em micro-lotes colhidos a mão acima de
+            <span class="manifesto-word manifesto-word--amber">1.850 metros</span>,
+            e na alquimia precisa entre
+            <span class="manifesto-word manifesto-word--ruby">tempo, temperatura</span>
+            e caramelo puro fundido na xícara.
+          </h2>
+
+          <div class="manifesto-pillars">
+            <div class="manifesto-pillar">
+              <p class="manifesto-pillar__title">01. ORIGEM TRANSPARENTE</p>
+              <p class="manifesto-pillar__text">Negociamos diretamente com cooperativas familiares da Mantiqueira de
+                Minas e Alta Mogiana, pagando até 60% acima do preço de mercado commodity.</p>
+            </div>
+            <div class="manifesto-pillar">
+              <p class="manifesto-pillar__title">02. TORRA DE PERFIL ÚNICO</p>
+              <p class="manifesto-pillar__text">Cada lote de 12kg possui curvas térmicas mapeadas por sensores óticos.
+                Destacamos as notas florais, acidez málica e cremosidade densa natural.</p>
+            </div>
+            <div class="manifesto-pillar">
+              <p class="manifesto-pillar__title">03. EXTRAÇÃO SEM ATALHOS</p>
+              <p class="manifesto-pillar__text">Água mineral com pH regulado e tds controlado a 130ppm. Moedores com
+                lâminas planas blindadas de 83mm para granulometria uniforme.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 4. MENU DE ESPECIALIDADES (FX9 + FX7 + FX3)                         -->
+    <!-- =================================================================== -->
+    <section class="section-drinks" id="drinks">
+      <div class="container-xl">
+        <div class="section-header-split">
+          <div>
+            <div class="eyebrow eyebrow--ruby">
+              <span aria-hidden="true" class="eyebrow__line"></span>
+              <span>02 / Assinaturas do Bar</span>
+            </div>
+            <h2 class="heading-condensed-xl">Menu de Especialidades</h2>
+          </div>
+          <p class="section-header-split__desc">
+            Bebidas concebidas pela nossa equipe de baristas campeões. Cada receita explora camadas sensoriais do
+            espresso à emulsão cremosa artesanal.
+          </p>
+        </div>
+
+        <!-- Abas das 6 Bebidas -->
+        <div aria-label="Seleção de Bebidas Especiais" class="drink-tabs no-scrollbar" id="drink-tabs" role="tablist">
+          <button aria-selected="true" class="drink-tab-btn is-active" data-drink="0" role="tab" type="button">Macchiato
+            de Caramelo</button>
+          <button aria-selected="false" class="drink-tab-btn" data-drink="1" role="tab" type="button">Affogato</button>
+          <button aria-selected="false" class="drink-tab-btn" data-drink="2" role="tab" type="button">Vienense</button>
+          <button aria-selected="false" class="drink-tab-btn" data-drink="3" role="tab" type="button">Frappé</button>
+          <button aria-selected="false" class="drink-tab-btn" data-drink="4" role="tab" type="button">Mocha</button>
+          <button aria-selected="false" class="drink-tab-btn" data-drink="5" role="tab" type="button">Café
+            Irlandês</button>
+        </div>
+
+        <!-- FX7: Cartão de Vidro com Troca de Variante (FX9) -->
+        <div aria-live="polite" class="glass-card drink-showcase" id="drink-card-display">
+          <div class="drink-showcase__grid">
+            <div class="drink-showcase__details">
+              <div class="drink-showcase__meta">
+                <span class="drink-showcase__badge" id="drink-badge">Bestseller</span>
+                <span class="drink-showcase__temp" id="drink-temp">Servido Quente ou Gelado · 350ml</span>
+              </div>
+
+              <h3 class="drink-showcase__title" id="drink-title">Macchiato de Caramelo</h3>
+
+              <p class="drink-showcase__desc" id="drink-desc">
+                Camadas harmoniosas de xarope puro de baunilha, leite vaporizado aveludado, duplo shot de espresso
+                Bourbon Amarelo manchando o leite e finalização artística em grade com calda dourada artesanal de
+                caramelo com toque de flor de sal.
+              </p>
+
+              <div class="drink-showcase__specs">
+                <div>
+                  <div class="drink-spec__label">Notas</div>
+                  <div class="drink-spec__value" id="drink-notes">Caramelo Dourado, Baunilha &amp; Manteiga</div>
+                </div>
+                <div>
+                  <div class="drink-spec__label">Acidez</div>
+                  <div class="drink-spec__value" id="drink-acidity">Baixa / Doçura Envolvente</div>
+                </div>
+                <div>
+                  <div class="drink-spec__label">Preço</div>
+                  <div class="drink-spec__price" id="drink-price">R$ 25,00</div>
+                </div>
+              </div>
+
+              <div class="drink-showcase__cta-row">
+                <a class="btn-espresso" data-fx="letter-flip" href="#order">
+                  <span>Pedir no Balcão</span>
+                  <svg aria-hidden="true" class="btn-espresso__icon" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                    </path>
+                  </svg>
+                </a>
+                <span class="drink-showcase__note" id="drink-alt-note">Disponível também com leite de aveia</span>
+              </div>
+            </div>
+
+            <div class="drink-showcase__visual" data-cursor="Explorar">
+              <div aria-hidden="true" class="drink-showcase__aura" id="drink-visual-bg"></div>
+              <div class="drink-showcase__img-wrap" id="drink-visual-wrap">
+                <img
+                  alt="Macchiato de Caramelo em copo de vidro com camadas de leite vaporizado, espresso e calda dourada de caramelo"
+                  class="drink-showcase__img" decoding="async" height="320" id="drink-img" loading="lazy"
+                  src="./assets/drinks/macchiato-caramelo.png" width="320">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 5. PROCESSO / ORIGEM DO GRÃO (FX8 + FX2)                            -->
+    <!-- =================================================================== -->
+    <section class="section-process" id="process">
+      <div class="container-xl">
+        <div class="section-process__header">
+          <div class="eyebrow eyebrow--amber">
+            <span aria-hidden="true" class="eyebrow__line"></span>
+            <span>03 / Rastreabilidade e Método</span>
+          </div>
+          <h2 class="heading-condensed-xl" data-fx="reveal-chars">Da Montanha à Xícara</h2>
+          <p class="section-process__subtitle">
+            Nenhum detalhe é terceirizado. Acompanhamos a trajetória completa da cereja do café em quatro etapas
+            intransigentes de pureza.
+          </p>
+        </div>
+
+        <div class="process-grid">
+          <article class="process-card">
+            <div class="process-card__top">
+              <div class="process-card__meta">
+                <span class="process-card__step">PASSO 01</span>
+                <span class="process-card__spec">ALTITUDE 1.850M</span>
+              </div>
+              <div aria-hidden="true" class="process-card__divider" data-fx="draw-line"></div>
+              <h3 class="process-card__title" data-fx="reveal-chars">Colheita Seletiva</h3>
+              <p class="process-card__desc">
+                Apenas cerejas em maturação plena 'sangue de boi'. Colheita manual em encostas íngremes da Serra da
+                Mantiqueira com secagem em terreiros suspensos.
+              </p>
+            </div>
+            <div class="process-card__metric" data-decimals="0" data-fx="counter" data-suffix="% Arábica"
+              data-target="100">100% Arábica</div>
+          </article>
+
+          <article class="process-card">
+            <div class="process-card__top">
+              <div class="process-card__meta">
+                <span class="process-card__step">PASSO 02</span>
+                <span class="process-card__spec">IN-HOUSE LAB</span>
+              </div>
+              <div aria-hidden="true" class="process-card__divider" data-fx="draw-line"></div>
+              <h3 class="process-card__title" data-fx="reveal-chars">Torra de Precisão</h3>
+              <p class="process-card__desc">
+                Torrador de tambor em ferro fundido. Desenvolvimento médio-claro para preservar a acidez fosfórica e
+                evitar notas carbonizadas.
+              </p>
+            </div>
+            <div class="process-card__metric" data-decimals="1" data-fx="counter" data-suffix=" min" data-target="11.8">
+              11.8 min</div>
+          </article>
+
+          <article class="process-card">
+            <div class="process-card__top">
+              <div class="process-card__meta">
+                <span class="process-card__step">PASSO 03</span>
+                <span class="process-card__spec">BURRS 83MM</span>
+              </div>
+              <div aria-hidden="true" class="process-card__divider" data-fx="draw-line"></div>
+              <h3 class="process-card__title" data-fx="reveal-chars">Moagem Micron</h3>
+              <p class="process-card__desc">
+                Moinhos de dose única com retenção zero. Distribuição de partículas bimodal perfeita, pesadas
+                digitalmente com precisão de 0,05g.
+              </p>
+            </div>
+            <div class="process-card__metric" data-decimals="1" data-fx="counter" data-suffix="g In" data-target="19.5">
+              19.5g In</div>
+          </article>
+
+          <article class="process-card">
+            <div class="process-card__top">
+              <div class="process-card__meta">
+                <span class="process-card__step">PASSO 04</span>
+                <span class="process-card__spec">9 BAR · 93.5°C</span>
+              </div>
+              <div aria-hidden="true" class="process-card__divider" data-fx="draw-line"></div>
+              <h3 class="process-card__title" data-fx="reveal-chars">Extração Dourada</h3>
+              <p class="process-card__desc">
+                Pressão estável por saturação de caldeiras duplas saturadas. O resultado é crema viscosa cor de avelã
+                com brilho espelhado persistente.
+              </p>
+            </div>
+            <div class="process-card__metric" data-decimals="0" data-fx="counter" data-suffix="g Out / 27s"
+              data-target="42">42g Out / 27s</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 6. AMBIENTE / GALERIA (FX10 Pin + Scrub #2 + FX11)                  -->
+    <!-- =================================================================== -->
+    <section class="section-space" data-fx="horizontal-gallery" id="space">
+      <div class="container-xl">
+        <div class="section-space__header">
+          <div>
+            <div class="eyebrow eyebrow--muted">
+              <span aria-hidden="true" class="eyebrow__line"></span>
+              <span>04 / O Espaço Físico</span>
+            </div>
+            <h2 class="heading-condensed-lg">Arquitetura, Madeira &amp; Concreto</h2>
+          </div>
+
+          <div class="gallery-controls">
+            <button aria-label="Foto anterior" class="gallery-btn" id="gallery-prev" type="button">
+              <svg aria-hidden="true" class="gallery-btn__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+            </button>
+            <button aria-label="Próxima foto" class="gallery-btn" id="gallery-next" type="button">
+              <svg aria-hidden="true" class="gallery-btn__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="gallery-viewport no-scrollbar" data-cursor="Arrastar" id="gallery-scroll">
+          <div class="gallery-track" id="gallery-track">
+            <article class="gallery-card">
+              <div class="gallery-card__media gallery-card__media--concrete">
+                <div aria-hidden="true" class="gallery-card__overlay"></div>
+                <div class="gallery-card__caption">
+                  <span class="gallery-card__tag">O Bar de Concreto</span>
+                  <h3 class="gallery-card__title">Bancada Central 12m</h3>
+                </div>
+              </div>
+              <div class="gallery-card__body">
+                <p class="gallery-card__desc">
+                  Projetada para não haver barreiras entre barista e visitante. Veja a mágica dos bicos de vapor ao vivo
+                  enquanto escolhe o grão do dia.
+                </p>
+              </div>
+            </article>
+
+            <article class="gallery-card">
+              <div class="gallery-card__media gallery-card__media--roaster">
+                <div aria-hidden="true" class="gallery-card__overlay"></div>
+                <div class="gallery-card__caption">
+                  <span class="gallery-card__tag">O Torrador Visível</span>
+                  <h3 class="gallery-card__title">Giesen 6kg Custom</h3>
+                </div>
+              </div>
+              <div class="gallery-card__body">
+                <p class="gallery-card__desc">
+                  Instalado atrás de painel acústico de vidro térmico. Terças e quintas realizamos as sessões públicas
+                  de cupping e torra matinal.
+                </p>
+              </div>
+            </article>
+
+            <article class="gallery-card">
+              <div class="gallery-card__media gallery-card__media--ceramics">
+                <div aria-hidden="true" class="gallery-card__overlay"></div>
+                <div class="gallery-card__caption">
+                  <span class="gallery-card__tag">Cerâmicas Exclusivas</span>
+                  <h3 class="gallery-card__title">Feitas a Mão no Forno</h3>
+                </div>
+              </div>
+              <div class="gallery-card__body">
+                <p class="gallery-card__desc">
+                  Peças torneadas por artesãos de Cunha-SP com argila com alto teor de ferro, mantendo a temperatura
+                  térmica da bebida por 25% mais tempo.
+                </p>
+              </div>
+            </article>
+
+            <article class="gallery-card">
+              <div class="gallery-card__media gallery-card__media--patio">
+                <div aria-hidden="true" class="gallery-card__overlay gallery-card__overlay--dark"></div>
+                <div class="gallery-card__caption">
+                  <span class="gallery-card__tag">Pátio Arborizado</span>
+                  <h3 class="gallery-card__title">Jardim Botânico &amp; Luz</h3>
+                </div>
+              </div>
+              <div class="gallery-card__body">
+                <p class="gallery-card__desc">
+                  Mesas sob árvores frutíferas e luz filtrada para reuniões tranquilas, leitura com trilha em vinil ou
+                  apenas uma pausa no corre da cidade.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 7. DEPOIMENTOS / PROVA SOCIAL (SEÇÃO RESPIRO — SEM EFEITOS)         -->
+    <!-- =================================================================== -->
+    <section aria-label="Crítica e Comunidade" class="section-reviews" id="reviews">
+      <div class="container-xl">
+        <div class="section-reviews__topbar">
+          <div class="eyebrow eyebrow--caramel eyebrow--flush">
+            <span aria-hidden="true" class="eyebrow__line"></span>
+            <span>05 / Crítica &amp; Comunidade</span>
+          </div>
+          <div class="reviews-aggregate">
+            <span aria-hidden="true" class="reviews-aggregate__stars">★★★★★</span>
+            <span>4.8 / 5.0 DE 1.200+ OPINIÕES</span>
+          </div>
+        </div>
+
+        <div class="reviews-list">
+          <article class="review-row">
+            <div class="review-row__author">
+              <h3 class="review-row__name">Camila Monteiro</h3>
+              <p class="review-row__role">Sommelier de Café · São Paulo</p>
+            </div>
+            <div class="review-row__quote-wrap">
+              <blockquote class="review-row__quote">
+                “O Macchiato de Caramelo da casa é uma aula de proporção. O caramelo artesanal não rouba a cena do
+                espresso Bourbon, apenas envolve o leite aveludado com doçura e equilíbrio cirúrgicos.”
+              </blockquote>
+            </div>
+            <div aria-label="5 de 5 estrelas" class="review-row__rating">★★★★★</div>
+          </article>
+
+          <article class="review-row">
+            <div class="review-row__author">
+              <h3 class="review-row__name">Rodrigo Vasconcelos</h3>
+              <p class="review-row__role">Crítico Gastronômico Revista Paladar</p>
+            </div>
+            <div class="review-row__quote-wrap">
+              <blockquote class="review-row__quote">
+                “A consistência da torra semana após semana é o que separa uma cafeteria comum de um templo de grãos de
+                especialidade. COFFEE entrega o melhor espresso da capital.”
+              </blockquote>
+            </div>
+            <div aria-label="5 de 5 estrelas" class="review-row__rating">★★★★★</div>
+          </article>
+
+          <article class="review-row">
+            <div class="review-row__author">
+              <h3 class="review-row__name">Helena Salles</h3>
+              <p class="review-row__role">Frequentadora Diária</p>
+            </div>
+            <div class="review-row__quote-wrap">
+              <blockquote class="review-row__quote">
+                “Ambiente sem barulho ensurdecedor de liquidificador, playlist de jazz pensada e uma equipe que
+                realmente sabe explicar qual é a safra que você está bebendo.”
+              </blockquote>
+            </div>
+            <div aria-label="5 de 5 estrelas" class="review-row__rating">★★★★★</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 8. VISITE-NOS & CONTATO (FX2 + FX3)                                 -->
+    <!-- =================================================================== -->
+    <section class="section-order" id="order">
+      <div aria-hidden="true" class="section-order__glow"></div>
+
+      <div class="container-xl section-order__inner">
+        <div class="order-grid">
+          <div class="order-info">
+            <div>
+              <span class="order-info__eyebrow">Encontre-nos no Bairro</span>
+              <h2 class="order-info__title" data-fx="reveal-chars">Venha Sentir o Aroma ao Vivo</h2>
+            </div>
+
+            <div class="order-cards">
+              <div class="order-card">
+                <span class="order-card__label">Endereço Principal</span>
+                <p class="order-card__street">Rua dos Pinheiros, 842 — Pinheiros</p>
+                <p class="order-card__city">São Paulo — SP, 05422-001</p>
+                <button class="btn-copy-address" data-cursor="Copiar" id="copy-address-btn" type="button">
+                  <svg aria-hidden="true" class="btn-copy-address__icon" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                      stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                  </svg>
+                  <span id="copy-btn-text">Copiar Endereço</span>
+                </button>
+              </div>
+
+              <div class="order-card">
+                <span class="order-card__label">Horário do Balcão</span>
+                <div class="hours-list">
+                  <div class="hours-list__row hours-list__row--bordered">
+                    <span>Segunda a Sexta</span>
+                    <span class="hours-list__time">07:30 — 19:30</span>
+                  </div>
+                  <div class="hours-list__row hours-list__row--bordered">
+                    <span>Sábados e Domingos</span>
+                    <span class="hours-list__time">08:30 — 20:00</span>
+                  </div>
+                  <div class="hours-list__row">
+                    <span>Feriados Nacionais</span>
+                    <span class="hours-list__time">09:00 — 18:00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="newsletter-box">
+              <label class="newsletter-box__label" for="newsletter-email">Receba notas de prova dos novos lotes
+                quinzenais:</label>
+              <form class="newsletter-form" id="newsletter-form">
+                <input class="newsletter-form__input" id="newsletter-email" name="email"
+                  placeholder="seu.email@exemplo.com" required type="email">
+                <button class="newsletter-form__submit" type="submit">Cadastrar</button>
+              </form>
+              <p aria-live="polite" class="newsletter-box__feedback" hidden id="newsletter-feedback">
+                ✦ Bem-vindo ao clube. Enviamos um cupom de 15% para o seu e-mail!
+              </p>
+            </div>
+          </div>
+
+          <aside class="roast-home-card">
+            <div class="roast-home-card__top">
+              <div aria-hidden="true" class="roast-home-card__badge">☕</div>
+              <h3 class="roast-home-card__title">Torra Sob Demanda Para Casa</h3>
+              <p class="roast-home-card__desc">
+                Compre o pacote de grãos inteiros moídos na hora para o seu método predileto: V60, Prensa Francesa,
+                Aeropress ou Espresso doméstico.
+              </p>
+            </div>
+            <div class="roast-home-card__bottom">
+              <a class="btn-cream-full" data-fx="letter-flip" href="#order">Fazer Pedido Para Retirada</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =================================================================== -->
+  <!-- 9. RODAPÉ MÍNIMO COM EASTER EGG (FX13)                              -->
+  <!-- =================================================================== -->
+  <footer class="site-footer" data-purpose="site-footer">
+    <div class="container-xl site-footer__inner">
+      <div>© 2026 COFFEE Roasters. Todos os direitos reservados.</div>
+      <div class="site-footer__quote">Sit. Drink. Relax.</div>
+      <button class="easter-egg-btn" id="easter-egg-btn" title="Segredo do Torrador" type="button">
+        <span aria-hidden="true" class="easter-egg-btn__star">✦</span>
+        <span id="easter-egg-label">BATCH 001/SP</span>
+      </button>
+    </div>
+  </footer>
+</body>
+
+</html>

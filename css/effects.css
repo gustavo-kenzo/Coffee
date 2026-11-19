@@ -1,0 +1,326 @@
+/* ==========================================================================
+   FX1: PRELOADER COM CORTINA (Ativo apenas com .js-enabled)
+   ========================================================================== */
+.preloader {
+  display: none;
+}
+
+.js-enabled .preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--color-espresso);
+  color: var(--color-space);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  user-select: none;
+  will-change: transform;
+}
+
+@media (min-width: 640px) {
+  .js-enabled .preloader {
+    padding: 3rem;
+  }
+}
+
+.preloader__top,
+.preloader__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+.preloader__top {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: rgba(242, 235, 220, 0.6);
+}
+
+.preloader__bottom {
+  font-size: 0.6875rem;
+  color: rgba(242, 235, 220, 0.4);
+}
+
+.preloader__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.preloader__pulse {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-caramel);
+  animation: fxPulse 1.4s var(--ease-in-out) infinite;
+}
+
+@keyframes fxPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1.6);
+  }
+}
+
+.preloader__center {
+  max-width: 36rem;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.preloader__cup-svg {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto;
+  stroke: rgba(242, 235, 220, 0.4);
+}
+
+.preloader__cup-liquid {
+  fill: var(--color-caramel);
+  opacity: 0.85;
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+
+.preloader__counter {
+  font-family: var(--font-mono);
+  font-size: clamp(4.5rem, 12vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--color-bg);
+}
+
+.preloader__caption {
+  margin-top: 0.5rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  color: rgba(242, 235, 220, 0.7);
+}
+
+.preloader__track {
+  width: 100%;
+  max-width: 20rem;
+  height: 2px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.preloader__bar {
+  width: 0%;
+  height: 100%;
+  background-color: var(--color-caramel);
+}
+
+/* ==========================================================================
+   FX2: REVEAL DE TEXTO COM MÁSCARA
+   ========================================================================== */
+.fx-mask-line,
+.fx-mask-char {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.fx-split-char {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* ==========================================================================
+   FX3: LETTER FLIP NO HOVER (Menu e CTAs Principais)
+   ========================================================================== */
+.fx-flip-wrap {
+  display: inline-flex;
+  overflow: hidden;
+  line-height: 1.15;
+}
+
+.fx-flip-char {
+  position: relative;
+  display: inline-block;
+  transition: transform var(--dur-fast) var(--ease-out);
+  transition-delay: var(--flip-delay, 0s);
+  will-change: transform;
+}
+
+.fx-flip-char::after {
+  content: attr(data-char);
+  position: absolute;
+  left: 0;
+  top: 100%;
+  display: block;
+}
+
+[data-fx="letter-flip"]:hover .fx-flip-char,
+[data-fx="letter-flip"]:focus-visible .fx-flip-char {
+  transform: translateY(-100%);
+}
+
+/* ==========================================================================
+   FX5: VAPOR SUAVE (Canvas Hero)
+   ========================================================================== */
+.hero-steam-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 15;
+  opacity: 0.6;
+}
+
+/* ==========================================================================
+   FX6: GRÃO + VINHETA DISCRETA GLOBAL
+   ========================================================================== */
+.fx-film-grain {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 998;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.fx-vignette {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 997;
+  background: radial-gradient(circle at center, transparent 62%, rgba(26, 20, 18, 0.045) 100%);
+}
+
+@media (max-width: 768px) {
+  .fx-film-grain {
+    opacity: 0.025;
+  }
+
+  .fx-vignette {
+    opacity: 0.6;
+  }
+}
+
+/* ==========================================================================
+   FX7: CARTÃO DE VIDRO (Backdrop Filter)
+   ========================================================================== */
+.glass-card {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-glass-border);
+}
+
+/* ==========================================================================
+   FX10: GALERIA PIN + SCRUB (Desktop)
+   ========================================================================== */
+.gallery-viewport.is-pinned {
+  overflow: visible;
+  scroll-snap-type: none;
+}
+
+/* ==========================================================================
+   FX11: CURSOR CUSTOMIZADO CONTEXTUAL (Desktop)
+   ========================================================================== */
+.fx-cursor {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .js-enabled .fx-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9990;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-espresso);
+    color: var(--color-bg);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+    transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+    box-shadow: var(--shadow-md);
+  }
+
+  .js-enabled .fx-cursor.is-visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* ==========================================================================
+   FX13: EASTER EGG NO RODAPÉ
+   ========================================================================== */
+.easter-egg-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--color-muted);
+  transition: color 0.25s var(--ease-out);
+}
+
+.easter-egg-btn:hover {
+  color: var(--color-caramel);
+}
+
+.easter-egg-btn__star {
+  display: inline-block;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.easter-egg-btn:hover .easter-egg-btn__star {
+  transform: rotate(45deg);
+}
+
+/* ==========================================================================
+   ACESSIBILIDADE: PREFERS-REDUCED-MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js-enabled .preloader,
+  .js-enabled .fx-cursor,
+  .hero-steam-canvas {
+    display: none !important;
+  }
+
+  .fx-flip-char {
+    transform: none !important;
+  }
+}

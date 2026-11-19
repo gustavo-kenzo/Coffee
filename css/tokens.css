@@ -1,0 +1,84 @@
+/* ==========================================================================
+   INVENTÁRIO DO DESIGN (CRUZAMENTO PNG + HTML)
+   ==========================================================================
+   1. SEÇÕES:
+      - #preloader: Tela de carregamento inicial (#1A1412, counter Space Mono)
+      - header + .announcement-strip: Nav esquerda, logo BREWED, CTA verde, sub-barra 15% off
+      - #hero: Palco principal (#FCF9F5), marca d'água tripla CARAMEL MACCHIATO, xícara central, copy esquerda, 3 métricas direita
+      - #story: Manifesto escuro (#1A1412), declaração Playfair Display + 3 colunas
+      - #drinks: Menu de Especialidades (#FBF8F4), 6 abas de bebidas + .glass-card showcase
+      - #process: Da Montanha à Xícara (#F4EFEA), 4 etapas com linhas divisórias e métricas
+      - #space: Arquitetura, Madeira & Concreto (#FAF6EE), carrossel horizontal de 4 cartões
+      - #reviews: Crítica & Comunidade (#FBF8F4), seção respiro com 3 avaliações tracejadas
+      - #order: Visite-nos (#1A1412), endereço, horários, newsletter e cartão lateral Torra Sob Demanda
+      - footer: Rodapé mínimo (#FBF8F4), copyright, "Pixels. Print. Purpose.", selo BATCH 001/SP
+
+   2. TOKENS EXTRAÍDOS:
+      - Cores: #FCF9F5, #F2EBDC, #FBF8F4, #F4EFEA, #FAF6EE, #1C261F, #1A1412, #233829, #C07D38, #D97E36, #C83228, #827871, #DCCFBE, #E6DCCB
+      - Tipografia: Anton, Barlow Condensed, Plus Jakarta Sans, Playfair Display, Space Mono
+      - Raios: 0.75rem (cards), 1rem (glass/gallery), 1.5rem (hero mask), 9999px (pills)
+
+   3. DIVERGÊNCIAS PNG × HTML:
+      - Imagens da xícara (#hero-coffee-cup e #drink-img): No PNG aparecem como faixa cinza placeholder (falha de rede na captura estática); no HTML constam as URLs originais lh3.googleusercontent.com, preservadas integralmente.
+      - #preloader: Estava com display:none e translateY(-100%) inline no HTML exportado; agora controlado exclusivamente via .js-enabled.
+      - Estilos inline de transform no hero: Removidos do HTML estático e delegados ao GSAP quickTo.
+   ========================================================================== */
+
+:root {
+  /* Cores do Design */
+  --color-bg: #FCF9F5;
+  --color-sand: #F2EBDC;
+  --color-surface: #FBF8F4;
+  --color-container: #F4EFEA;
+  --color-space: #FAF6EE;
+  --color-text: #1C261F;
+  --color-espresso: #1A1412;
+  --color-forest: #233829;
+  --color-forest-hover: #1A2C1F;
+  --color-amber: #C07D38;
+  --color-caramel: #D97E36;
+  --color-caramel-hover: #B86524;
+  --color-ruby: #C83228;
+  --color-muted: #827871;
+  --color-border: #DCCFBE;
+  --color-watermark: #E6DCCB;
+  --color-white: #FFFFFF;
+
+  /* Superfícies & Transparências */
+  --color-glass-bg: rgba(252, 249, 245, 0.72);
+  --color-glass-border: rgba(220, 207, 190, 0.55);
+  --color-dark-card-bg: rgba(255, 255, 255, 0.05);
+  --color-dark-card-border: rgba(255, 255, 255, 0.1);
+  --color-caramel-tint: rgba(217, 126, 54, 0.15);
+  --color-caramel-glow: rgba(217, 126, 54, 0.25);
+
+  /* Famílias Tipográficas */
+  --font-display: 'Anton', Impact, sans-serif;
+  --font-condensed: 'Barlow Condensed', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Raios & Espaçamentos */
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-pill: 9999px;
+  --space-unit: 0.25rem;
+  --container-xl: 1440px;
+  --container-md: 1200px;
+
+  /* Sombras */
+  --shadow-sm: 0 1px 2px 0 rgba(26, 20, 18, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(26, 20, 18, 0.1), 0 2px 4px -2px rgba(26, 20, 18, 0.1);
+  --shadow-cup: drop-shadow(0 25px 25px rgba(26, 20, 18, 0.15));
+
+  /* Tokens de Movimento (Assinatura Oryzo) */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 0.4s;
+  --dur-base: 0.9s;
+  --dur-slow: 1.4s;
+  --stagger-char: 0.02s;
+  --stagger-line: 0.08s;
+}
