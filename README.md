@@ -73,9 +73,3 @@ O resultado depende de **prompts dirigidos**: descrever com precisão seções, 
 - Praticar a combinação de ferramentas de IA para design, código e imagem
 
 > As imagens, textos, endereço e avaliações são fictícios, criados para fins de demonstração.
-
----
-
-## 📄 Licença
-
-Projeto de portfólio e estudo. Defina a licença de sua preferência (ex.: MIT).
